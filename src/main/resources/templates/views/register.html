@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RSA测试</title>
+</head>
+<body align="center">
+	<h1>用户注册</h1>
+	<h2>用户名:<input id="name" type="text" name="name" value=""/></h2>
+	<h2>电话:<input id="phone" type="text" name="phone" value=""/></h2>
+	<h2>密码:<input id="pwd" type="password" name="pwd" value=""/></h2>
+	<input id="pk" type="hidden" th:value="${pk}"/>
+	<input type="button" onclick="submit()" value="注册"/>
+<script type="text/javascript" src="/js/jquery-1.2.6.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/js/jsencrypt.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+	function submit(){
+		var name = $("#name").val();
+		var phone =$("#phone").val();
+		var pwd = $("#pwd").val();
+		var pk=$("#pk").val();
+		var encrypt = new JSEncrypt();
+		encrypt.setPublicKey(pk);
+		pwd = encrypt.encrypt(pwd);
+		console.log(pwd);
+		$.ajax({
+			url:"http://localhost:8080/user/submit/",
+			data:{"pwd":pwd},
+			type:"post",
+			datatype:"json",
+			success:function(result){
+				alert(result)
+			}
+		})
+		console.log(pk);
+	}
+	
+</script>
+</body>
+</html>
