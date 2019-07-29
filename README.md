@@ -16,3 +16,12 @@
   a.利用Thymeleaf进行传参, th:field  th:text等
 	
   b.JSEncrypt利用公钥对数据进行加密
+  
+  
+Jsoup工具使用
+
+1.Jsoup模拟用户登录
+
+2.获取登录后的Cookie
+
+3.带Cookie进行网站访问,获取网站信息
